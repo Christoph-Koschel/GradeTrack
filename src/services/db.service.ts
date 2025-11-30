@@ -1,4 +1,4 @@
-export type DBTable = "year" | "subject";
+export type DBTable = "year" | "subject" | "note";
 
 export class DBService {
     private db!: IDBDatabase;
@@ -15,7 +15,7 @@ export class DBService {
 
         this.dbName = "GradeTrack";
         this.version = 1;
-        this.tables = ["year", "subject"];
+        this.tables = ["year", "subject", "note"];
 
         this.init();
     }
@@ -33,7 +33,7 @@ export class DBService {
 
                 for (const table of this.tables) {
                     if (!db.objectStoreNames.contains(table)) {
-                        db.createObjectStore(table, { keyPath: "id", autoIncrement: true });
+                        db.createObjectStore(table, {keyPath: "id", autoIncrement: true});
                     }
                 }
             };
@@ -57,14 +57,14 @@ export class DBService {
         });
     }
 
-    public async get<T>(table: DBTable, id: number): Promise<T | undefined> {
+    public async get<T>(table: DBTable, id: number): Promise<T | null> {
         await this.ready();
         return new Promise((resolve, reject) => {
             const tx = this.db.transaction(table, "readonly");
             const store = tx.objectStore(table);
             const req = store.get(id);
 
-            req.onsuccess = () => resolve(req.result as T | undefined);
+            req.onsuccess = () => resolve(req.result as T ?? null);
             req.onerror = () => reject(req.error);
         });
     }

@@ -1,10 +1,12 @@
 import { App, createApp } from "vue";
-import { useMVVM } from "vue-mvvm";
+import { createMVVM } from "vue-mvvm";
 import { MVVMApp } from "vue-mvvm/router";
 
-import "./main.css";
-import AppConfig from "./config";
+import "@extensions/math.extension";
 
-const app: App = createApp(MVVMApp)
-useMVVM(app, new AppConfig());
+import "@/main.css";
+import AppConfig from "@/config";
+
+const app: App = createApp(MVVMApp);
+app.use(createMVVM(new AppConfig()));
 app.mount("#app");

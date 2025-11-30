@@ -1,6 +1,6 @@
-import { ReadableGlobalContext } from "vue-mvvm";
-import { DBService } from "./db.service";
-import { GradingStyle, YearModel, YearType } from "@/models/year.model";
+import {ReadableGlobalContext} from "vue-mvvm";
+import {DBService} from "./db.service";
+import {GradingStyle, YearModel, YearType} from "@/models/year.model";
 
 export class YearService {
     private readonly db: DBService;

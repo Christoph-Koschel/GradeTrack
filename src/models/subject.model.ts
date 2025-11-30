@@ -1,16 +1,26 @@
-export enum SubjectColor {
-    BLUE,
-    GREEN
-}
-
 export enum SubjectIcon {
-    TEST_TUBE
+    BOOK,
+    CALCULATOR,
+    FLASK,
+    GLOBE,
+    PALETTE,
+    MUSIC,
+    RUN,
+    ALPHABETIC,
+    CASH,
+    THEATER,
+    MICROSCOPE,
+    SCHOOL
 }
 
 export type SubjectModel = {
     id: number;
     name: string;
-    color: SubjectColor;
+    color: string;
     icon: SubjectIcon;
     yearID: number;
+    writingRatio: number;
+    oralRatio: number;
+    homeworkRatio: number;
+    testRatio: number;
 }
