@@ -15,7 +15,7 @@
     "@tauri-apps/plugin-opener": "^2",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.13",
-    "vue-mvvm": "^0.1.1"
+    "vue-mvvm": "^0.2.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
