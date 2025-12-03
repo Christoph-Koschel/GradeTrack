@@ -3,11 +3,12 @@ import {AppShell, WritableGlobalContext} from "vue-mvvm";
 import {NewYearViewModel} from "@views/NewYearView.model";
 import {DashboardViewModel} from "@views/Dashboard.model";
 import {SubjectViewModel} from "@views/SubjectView.model";
+import {NewSubjectViewModel} from "@views/NewSubjectView.model";
+import {NewNoteViewModel} from "@views/NewNote.model";
 
 import {SubjectService} from "@services/subject.service";
 import {DBService} from "@services/db.service";
 import {YearService} from "@services/year.service";
-import {NewSubjectViewModel} from "./views/NewSubjectView.model";
 import {NoteService} from "@services/note.service";
 
 export default class AppConfig implements AppShell {
@@ -16,7 +17,8 @@ export default class AppConfig implements AppShell {
             DashboardViewModel,
             NewYearViewModel,
             NewSubjectViewModel,
-            SubjectViewModel
+            SubjectViewModel,
+            NewNoteViewModel
         ]
     }
 

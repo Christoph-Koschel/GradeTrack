@@ -25,7 +25,7 @@
             font-size="7"
             text-anchor="middle"
         >
-            {{ values[index] }}
+            {{ labels[index] }}
         </text>
     </svg>
 </template>
@@ -34,6 +34,10 @@
 export default {
     props: {
         values: {
+            type: Array,
+            required: true
+        },
+        labels: {
             type: Array,
             required: true
         },

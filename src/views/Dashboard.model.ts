@@ -32,7 +32,7 @@ export class DashboardViewModel extends ViewModel {
     public totalAverage: string = this.computed(() => {
         const notes: NoteModel[] = Array.from(this.notesOfSubjects.values()).flat();
         if (!this.year || notes.length == 0) {
-            return "N/A";
+            return "\u2013";
         }
 
         return this.noteService.calculateAverage(this.year.grading, notes);
@@ -82,7 +82,7 @@ export class DashboardViewModel extends ViewModel {
     public getSubjectAverage(subject: SubjectModel): string {
         const notes: NoteModel[] | undefined = this.notesOfSubjects.get(subject.id);
         if (!this.year || !notes || notes.length == 0) {
-            return "N/A";
+            return "\u2013";
         }
 
         return this.noteService.calculateAverage(this.year.grading, notes);

@@ -20,6 +20,10 @@ export class YearService {
         return null;
     }
 
+    public async getYear(yearID: number): Promise<YearModel | null> {
+        return await this.db.get("year", yearID);
+    }
+
     public async createYear(title: string, type: YearType, grading: GradingStyle, active: boolean): Promise<void> {
         await this.db.save<YearModel>("year", {
             title: title,
