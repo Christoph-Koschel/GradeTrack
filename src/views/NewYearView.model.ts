@@ -1,10 +1,14 @@
 import {Component} from "vue";
-import {ViewModel} from "vue-mvvm";
+import {ActionResult, ViewModel} from "vue-mvvm";
 import {RouteAdapter, RouterService} from "vue-mvvm/router";
 
 import NewYearView from "@views/NewYearView.vue";
+
 import {GradingStyle, YearType} from "@models/year.model";
+
 import {YearService} from "@/services/year.service";
+
+import {type NoteGradingPreview, NoteSelectControlModel} from "@controls/NoteSelectControl.model.ts";
 
 export class NewYearViewModel extends ViewModel {
     public static readonly component: Component = NewYearView;
@@ -14,6 +18,8 @@ export class NewYearViewModel extends ViewModel {
 
     private readonly routerService: RouterService;
     private readonly yearService: YearService;
+
+    public noteSelectControl: NoteSelectControlModel | null = this.getUserControl<NoteSelectControlModel>("noteSelectControl")
 
     public readonly currentYear: string = this.computed(() => {
         return (new Date()).getFullYear().toString();
@@ -25,7 +31,11 @@ export class NewYearViewModel extends ViewModel {
 
     public title: string = this.ref("");
     public timeRange: YearType = this.ref(YearType.AUG_SEP);
-    public gradingSystem: GradingStyle = this.ref(GradingStyle.WHOLE_NOTES);
+    public gradingSystem: NoteGradingPreview = this.ref<NoteGradingPreview>({
+        value: GradingStyle.PERCENTAGE,
+        title: "Percentage",
+        preview: "100%, ..., 0%"
+    });
     public active: boolean = this.ref(true);
 
     public constructor() {
@@ -39,10 +49,20 @@ export class NewYearViewModel extends ViewModel {
         await this.yearService.createYear(
             this.title,
             this.timeRange,
-            this.gradingSystem,
+            this.gradingSystem.value,
             this.active
         );
 
         this.routerService.navigateBack();
+    }
+
+    public async selectGradingSystem(): Promise<void> {
+        if (!this.noteSelectControl) {
+            return;
+        }
+        const result: ActionResult<NoteGradingPreview> = await this.runAction(this.noteSelectControl);
+        if (result.success) {
+            this.gradingSystem = result.data;
+        }
     }
 }

@@ -11,17 +11,19 @@
     <form class="p-4 flex flex-col flex-grow gap-4" @submit.prevent="vm.onSubmit">
         <label class="input validator w-full">
             <span class="label">Title</span>
-            <input required type="text" v-model="vm.title" />
+            <input required type="text" v-model="vm.title"/>
         </label>
         <div>
             <h2 class="font-semibold pb-1">Academic Period</h2>
             <ul class="list bg-base-100 rounded-sm border border-base-300">
                 <li class="list-row" @click="vm.timeRange = YearType.AUG_SEP">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.timeRange == YearType.AUG_SEP" />
+                    <input type="radio" class="radio radio-primary radio-sm"
+                           :checked="vm.timeRange == YearType.AUG_SEP"/>
                     <span class="text-sm">Aug. {{ vm.currentYear }} - Sep. {{ vm.nextYear }}</span>
                 </li>
                 <li class="list-row" @click="vm.timeRange = YearType.JAN_DEC">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.timeRange == YearType.JAN_DEC" />
+                    <input type="radio" class="radio radio-primary radio-sm"
+                           :checked="vm.timeRange == YearType.JAN_DEC"/>
                     <span class="text-sm">Jan. {{ vm.currentYear }} - Dec. {{ vm.currentYear }}</span>
                 </li>
             </ul>
@@ -29,36 +31,15 @@
         <div>
             <h2 class="font-semibold pb-1">Grading System</h2>
             <ul class="list bg-base-100 rounded-sm border border-base-300">
-                <li class="list-row" @click="vm.gradingSystem = GradingStyle.WHOLE_NOTES">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.gradingSystem == GradingStyle.WHOLE_NOTES" />
-                    <span class="text-sm">Whole notes</span>
-                    <span class="text-gray-400">1, 2, 3, ...</span>
-                </li>
-                <li class="list-row" @click="vm.gradingSystem = GradingStyle.HALF_NOTES">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.gradingSystem == GradingStyle.HALF_NOTES" />
-                    <span class="text-sm">Half notes</span>
-                    <span class="text-gray-400">1, 1.5, 2, ...</span>
-                </li>
-                <li class="list-row" @click="vm.gradingSystem = GradingStyle.COMMA_NOTES">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.gradingSystem == GradingStyle.COMMA_NOTES" />
-                    <span class="text-sm">Comma notes</span>
-                    <span class="text-gray-400">1, 1.1, 1.2, ...</span>
-                </li>
-                <li class="list-row" @click="vm.gradingSystem = GradingStyle.POINTS">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.gradingSystem == GradingStyle.POINTS" />
-                    <span class="text-sm">Points</span>
-                    <span class="text-gray-400">1pt, 2pt, ...</span>
-                </li>
-                <li class="list-row" @click="vm.gradingSystem = GradingStyle.LETTERS">
-                    <input type="radio" class="radio radio-primary radio-sm" :checked="vm.gradingSystem == GradingStyle.LETTERS" />
-                    <span class="text-sm">Letters</span>
-                    <span class="text-gray-400">A, B, ...</span>
+                <li class="list-row" @click="vm.selectGradingSystem">
+                    <span class="text-sm list-col-grow">{{ vm.gradingSystem.title }}</span>
+                    <span class="text-gray-400">{{ vm.gradingSystem.preview }}</span>
                 </li>
             </ul>
         </div>
         <div>
             <span class="label" @click="vm.active = !vm.active">
-                <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" :checked="vm.active" />
+                <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" :checked="vm.active"/>
                 <span>Set as active Year</span>
             </span>
         </div>
@@ -68,12 +49,17 @@
             </button>
         </div>
     </form>
+    <NoteSelectControl ref="noteSelectControl"/>
 </template>
 
 <script setup lang="ts">
-import { useViewModel } from "vue-mvvm";
-import { NewYearViewModel } from "@views/NewYearView.model";
-import { GradingStyle, YearType } from "@models/year.model";
+import {useViewModel} from "vue-mvvm";
+
+import NoteSelectControl from "@controls/NoteSelectControl.vue";
+
+import {NewYearViewModel} from "@views/NewYearView.model";
+
+import {YearType} from "@models/year.model";
 
 const vm: NewYearViewModel = useViewModel(NewYearViewModel);
 </script>

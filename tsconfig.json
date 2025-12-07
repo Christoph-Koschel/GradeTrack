@@ -23,6 +23,7 @@
       "@/*": ["./src/*"],
       "@icons/*": ["./src/components/icons/*"],
       "@views/*": ["./src/views/*"],
+      "@controls/*": ["./src/controls/*"],
       "@services/*": ["./src/services/*"],
       "@models/*": ["./src/models/*"],
       "@extensions/*": ["./src/extensions/*"]

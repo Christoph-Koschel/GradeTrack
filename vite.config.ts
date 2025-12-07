@@ -22,6 +22,7 @@ export default defineConfig(async () => ({
             "@": resolve(__dirname, "./src"),
             "@icons": resolve(__dirname, "./src/components/icons"),
             "@views": resolve(__dirname, "./src/views"),
+            "@controls": resolve(__dirname, "./src/controls"),
             "@services": resolve(__dirname, "./src/services"),
             "@models": resolve(__dirname, "./src/models"),
             "@extensions": resolve(__dirname, "./src/extensions"),

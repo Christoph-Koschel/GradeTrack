@@ -4,11 +4,14 @@ export enum YearType {
 }
 
 export enum GradingStyle {
-    WHOLE_NOTES,
-    HALF_NOTES,
-    COMMA_NOTES,
-    POINTS,
-    LETTERS
+    GERMAN_WHOLE_1_6,
+    GERMAN_HALF_1_6,
+    GERMAN_1_6,
+    GERMAN_PT_0_15,
+    EU_0_20,
+    US_LETTER,
+    SWISS_1_6,
+    PERCENTAGE
 }
 
 export type YearModel = {

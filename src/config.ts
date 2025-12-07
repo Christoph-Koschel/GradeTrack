@@ -10,6 +10,7 @@ import {SubjectService} from "@services/subject.service";
 import {DBService} from "@services/db.service";
 import {YearService} from "@services/year.service";
 import {NoteService} from "@services/note.service";
+import {GradingService} from "@services/grading.service.ts";
 
 export default class AppConfig implements AppShell {
     router = {
@@ -27,5 +28,6 @@ export default class AppConfig implements AppShell {
         ctx.registerService(YearService, ctx => new YearService(ctx));
         ctx.registerService(SubjectService, ctx => new SubjectService(ctx));
         ctx.registerService(NoteService, ctx => new NoteService(ctx));
+        ctx.registerService(GradingService, () => new GradingService());
     }
 }

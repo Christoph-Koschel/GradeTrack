@@ -4,6 +4,7 @@ export type NoteModel = {
     id: number;
     subjectID: number;
     date: dayjs.Dayjs;
-    notes: string;
-    value: any;
+    remarks: string;
+    raw: string;
+    normalized: number;
 }
